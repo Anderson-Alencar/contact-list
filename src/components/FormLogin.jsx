@@ -11,12 +11,12 @@ function FormLogin() {
       <div className="input-group">
         <label htmlFor="email-input" className="label-simple">
           Email
-          <input className="input-simple" placeholder="Digite seu email" />
+          <input className="input-medium" placeholder="Digite seu email" />
         </label>
 
         <label htmlFor="password-input" className="label-simple">
           Senha
-          <input className="input-simple" placeholder="Digite sua senha" />
+          <input className="input-medium" placeholder="Digite sua senha" />
         </label>
       </div>
       <ButtonLogin />
