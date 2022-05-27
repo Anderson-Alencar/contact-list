@@ -1,7 +1,9 @@
 .login-screen {
-  position: relative;
+  position: absolute;
   width: 1440px;
   height: 826px;
+  left: 0px;
+  top: 0px;
 
   background: #FFFFFF;
 }
