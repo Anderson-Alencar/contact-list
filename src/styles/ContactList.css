@@ -118,3 +118,89 @@ main {
 
   margin: 40px 56px;
 }
+
+.table-contact-list {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+tbody {
+  border-top: 2px solid #ADB5BD;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #F1F3F5;
+}
+
+.header-table {
+  width: 1224px;
+  height: 80px;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+
+  text-align: left;
+  letter-spacing: -0.02em;
+
+  color: #244677;
+}
+
+.col-h-01 {
+  text-align: center;
+  padding-right: 40px;
+}
+.col {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 148%;
+
+  letter-spacing: -0.02em;
+  color: #495057;
+}
+
+.col-01 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 148%;
+
+  padding-right: 40px;
+
+  text-align: center;
+  letter-spacing: -0.02em;
+
+  color: #244677;
+}
+
+.row-body {
+  height: 64px;
+}
+
+.chevron {
+  margin-left: 9px;
+  margin-bottom: 5px;
+}
+
+table, th, td {
+  border-collapse: collapse;
+}
+
+.icons {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 9px;
+}
+
+.btn-actions {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #495057;
+}
