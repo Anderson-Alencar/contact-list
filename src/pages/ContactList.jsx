@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import ButtonAddNewContact from '../components/ButtonAddNewContact';
 import NavBarBack from '../components/NavBarBack';
 import TableContactList from '../components/TableContactList';
-import ContactsContext from '../context/ContactsContext';
+import UserContext from '../context/UserContext';
 import { setToken } from '../services/requests';
 import '../styles/ContactList.css';
 
 function ContactList() {
-  const { setIsAuthenticated } = useContext(ContactsContext);
+  const { setIsAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {

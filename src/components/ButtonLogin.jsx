@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ContactsContext from '../context/ContactsContext';
+import UserContext from '../context/UserContext';
 import { requestLogin } from '../services/requests';
 
 function ButtonLogin() {
-  const { email, password, setIsAuthenticated } = useContext(ContactsContext);
+  const { email, password, setIsAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   const login = async () => {

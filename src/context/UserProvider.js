@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ContactsContext from './ContactsContext';
+import UserContext from './UserContext';
 
 export default function ContactsProvider({ children }) {
   const [email, setEmail] = useState('');
@@ -18,9 +18,9 @@ export default function ContactsProvider({ children }) {
   };
 
   return (
-    <ContactsContext.Provider value={contextValue}>
+    <UserContext.Provider value={contextValue}>
       { children }
-    </ContactsContext.Provider>
+    </UserContext.Provider>
   );
 }
 

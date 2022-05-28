@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import ContactsContext from '../context/ContactsContext';
+import UserContext from '../context/UserContext';
 import ButtonLogin from './ButtonLogin';
 
 function FormLogin() {
   const {
     email, password, setEmail, setPassword,
-  } = useContext(ContactsContext);
+  } = useContext(UserContext);
 
   return (
     <form className="form-login">

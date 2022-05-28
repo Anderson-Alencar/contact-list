@@ -4,10 +4,10 @@ import FormRegisterContact from '../components/FormRegisterContact';
 import NavBarBack from '../components/NavBarBack';
 import '../styles/NewContactRegistration.css';
 import { setToken } from '../services/requests';
-import ContactsContext from '../context/ContactsContext';
+import UserContext from '../context/UserContext';
 
 function NewContactRegistration() {
-  const { setIsAuthenticated } = useContext(ContactsContext);
+  const { setIsAuthenticated } = useContext(UserContext);
 
   const navigate = useNavigate();
 

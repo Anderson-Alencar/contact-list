@@ -1,19 +1,19 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ContactsProvider from './context/ContactsProvider';
+import UserProvider from './context/UserProvider';
 import ContactList from './pages/ContactList';
 import Login from './pages/Login';
 import NewContactRegistration from './pages/NewContactRegistration';
 
 function App() {
   return (
-    <ContactsProvider>
+    <UserProvider>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/contacts" element={<ContactList />} />
         <Route path="/contacts/register" element={<NewContactRegistration />} />
       </Routes>
-    </ContactsProvider>
+    </UserProvider>
   );
 }
 
