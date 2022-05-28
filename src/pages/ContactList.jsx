@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ButtonAddNewContact from '../components/ButtonAddNewContact';
 import NavBarBack from '../components/NavBarBack';
 import TableContactList from '../components/TableContactList';
-import UserContext from '../context/UserContext';
+import UserContext from '../context/user/UserContext';
 import { setToken } from '../services/requests';
 import '../styles/ContactList.css';
 
