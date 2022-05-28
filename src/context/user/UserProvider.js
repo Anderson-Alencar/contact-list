@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import UserContext from './UserContext';
 
-export default function ContactsProvider({ children }) {
+export default function UserProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,6 +24,9 @@ export default function ContactsProvider({ children }) {
   );
 }
 
-ContactsProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+UserProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };

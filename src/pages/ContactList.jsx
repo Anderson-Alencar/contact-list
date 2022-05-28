@@ -3,13 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import ButtonAddNewContact from '../components/ButtonAddNewContact';
 import NavBarBack from '../components/NavBarBack';
 import TableContactList from '../components/TableContactList';
-import UserContext from '../context/UserContext';
-import { setToken } from '../services/requests';
+import ContactsContext from '../context/contacts/ContactsContext';
+import UserContext from '../context/user/UserContext';
+import { requestData, setToken } from '../services/requests';
 import '../styles/ContactList.css';
 
 function ContactList() {
   const { setIsAuthenticated } = useContext(UserContext);
+  const { setContacts } = useContext(ContactsContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const endpoint = '/contacts';
+
+      const { data } = await requestData(endpoint);
+      setContacts(data);
+    })();
+  }, []);
 
   useEffect(() => {
     (() => {
