@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ContactsContext from '../context/ContactsContext';
 import ButtonLogin from './ButtonLogin';
 
 function FormLogin() {
+  const {
+    email, password, setEmail, setPassword,
+  } = useContext(ContactsContext);
+
   return (
     <form className="form-login">
       <div>
@@ -11,12 +16,24 @@ function FormLogin() {
       <div className="input-group">
         <label htmlFor="email-input" className="label-simple">
           Email
-          <input className="input-medium" placeholder="Digite seu email" />
+          <input
+            type="email"
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+            className="input-medium"
+            placeholder="Digite seu email"
+          />
         </label>
 
         <label htmlFor="password-input" className="label-simple">
           Senha
-          <input className="input-medium" placeholder="Digite sua senha" />
+          <input
+            type="password"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+            className="input-medium"
+            placeholder="Digite sua senha"
+          />
         </label>
       </div>
       <ButtonLogin />
