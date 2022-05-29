@@ -41,7 +41,7 @@ function TableContactList() {
               <td className="col">{ mobile }</td>
               <td className="col">{ email }</td>
               <td className="col">
-                <a href="##" className="btn-actions">
+                <a href={`contacts/update/${id}`} className="btn-actions">
                   <div>
                     <img src={EditIcon} alt="edit icon" className="icons" />
                   </div>
