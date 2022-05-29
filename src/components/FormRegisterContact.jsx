@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ButtonRegister from './ButtonRegister';
 
 function FormRegisterContact() {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [mobile, setMobile] = useState();
+
   return (
     <form className="contact-form">
       <div>
@@ -11,20 +15,42 @@ function FormRegisterContact() {
       <div className="group-input">
         <label htmlFor="name-input" className="label-large">
           Nome completo
-          <input type="text" className="input-large" placeholder="Digite o nome do contato" />
+          <input
+            type="text"
+            value={name}
+            onChange={({ target }) => setName(target.value)}
+            className="input-large"
+            placeholder="Digite o nome do contato"
+          />
         </label>
         <div className="two-inputs">
           <label htmlFor="name-input" className="label-simple">
             Email
-            <input type="text" className="input-small" placeholder="Digite o email" />
+            <input
+              type="email"
+              value={email}
+              onChange={({ target }) => setEmail(target.value)}
+              className="input-small"
+              placeholder="Digite o email"
+            />
           </label>
           <label htmlFor="name-input" className="label-simple">
             Celular
-            <input type="text" className="input-small" placeholder="Digite o celular" />
+            <input
+              type="text"
+              value={mobile}
+              onChange={({ target }) => setMobile(target.value)}
+              className="input-small"
+              placeholder="Digite o celular"
+            />
           </label>
         </div>
       </div>
-      <ButtonRegister />
+      <ButtonRegister
+        name={name}
+        email={email}
+        mobile={mobile}
+      />
     </form>
   );
 }

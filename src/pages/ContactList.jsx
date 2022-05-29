@@ -5,7 +5,7 @@ import NavBarBack from '../components/NavBarBack';
 import TableContactList from '../components/TableContactList';
 import ContactsContext from '../context/contacts/ContactsContext';
 import UserContext from '../context/user/UserContext';
-import { requestData, setToken } from '../services/requests';
+import { requestGet, setToken } from '../services/requests';
 import '../styles/ContactList.css';
 
 function ContactList() {
@@ -17,7 +17,7 @@ function ContactList() {
     (async () => {
       const endpoint = '/contacts';
 
-      const { data } = await requestData(endpoint);
+      const { data } = await requestGet(endpoint);
       setContacts(data);
     })();
   }, []);
