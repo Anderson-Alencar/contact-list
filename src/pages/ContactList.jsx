@@ -14,15 +14,6 @@ function ContactList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
-      const endpoint = '/contacts';
-
-      const { data } = await requestGet(endpoint);
-      setContacts(data);
-    })();
-  }, []);
-
-  useEffect(() => {
     (() => {
       const user = JSON.parse(localStorage.getItem('token'));
 
@@ -34,7 +25,16 @@ function ContactList() {
       setIsAuthenticated(true);
       return true;
     })();
-  }, [navigate]);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const endpoint = '/contacts';
+
+      const { data } = await requestGet(endpoint);
+      setContacts(data);
+    })();
+  }, []);
 
   return (
     <body>
