@@ -1,15 +1,18 @@
-import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import NavBarBack from '../components/NavBarBack';
 import '../styles/InsertContact.css';
-import { setToken } from '../services/requests';
+import { requestGet, setToken } from '../services/requests';
 import UserContext from '../context/user/UserContext';
 import FormUpdateContact from '../components/FormUpdateContact';
 
 function UpdateContact() {
   const { setIsAuthenticated } = useContext(UserContext);
-
   const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  const [dataContact, setDataContact] = useState();
 
   useEffect(() => {
     (() => {
@@ -23,12 +26,24 @@ function UpdateContact() {
       setIsAuthenticated(true);
       return true;
     })();
-  }, [navigate]);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const endpoint = `/contacts/${id}`;
+
+      const { data } = await requestGet(endpoint);
+      setDataContact(data);
+    })();
+  }, []);
 
   return (
     <body>
       <NavBarBack />
-      <FormUpdateContact />
+      <FormUpdateContact
+        id={id}
+        dataContact={dataContact}
+      />
     </body>
   );
 }

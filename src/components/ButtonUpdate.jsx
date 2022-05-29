@@ -22,7 +22,7 @@ function ButtonUpdate({
       onClick={updateContact}
       className="btn-register"
     >
-      Atualizar contato
+      Salvar alterações
     </button>
   );
 }
@@ -31,7 +31,7 @@ ButtonUpdate.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   mobile: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ButtonUpdate;
