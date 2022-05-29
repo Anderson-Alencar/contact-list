@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/user/UserContext';
-import { requestLogin } from '../services/requests';
+import { requestPost } from '../services/requests';
 
 function ButtonLogin() {
   const { email, password, setIsAuthenticated } = useContext(UserContext);
@@ -10,7 +10,7 @@ function ButtonLogin() {
   const login = async () => {
     try {
       const endpoint = '/auth/login';
-      const { token } = await requestLogin(endpoint, { email, password });
+      const { token } = await requestPost(endpoint, { email, password });
 
       localStorage.setItem('token', JSON.stringify({ token }));
       setIsAuthenticated(true);
