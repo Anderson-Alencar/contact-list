@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ButtonAddNewContact from '../components/ButtonAddNewContact';
+import ModalRemoveContact from '../components/ModalRemoveContact';
 import NavBarBack from '../components/NavBarBack';
 import TableContactList from '../components/TableContactList';
 import ContactsContext from '../context/contacts/ContactsContext';
@@ -36,6 +37,16 @@ function ContactList() {
     })();
   }, []);
 
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  const showModal = () => {
+    setModalIsVisible(true);
+  };
+
+  const hiddenModal = () => {
+    setModalIsVisible(false);
+  };
+
   return (
     <body>
       <NavBarBack />
@@ -44,8 +55,19 @@ function ContactList() {
           <h1 className="title-list">Listagem de contatos</h1>
           <ButtonAddNewContact />
         </div>
-        <TableContactList />
+        <TableContactList
+          showModal={showModal}
+        />
       </main>
+      {
+        modalIsVisible && (
+          <div className="modal">
+            <ModalRemoveContact
+              hiddenModal={hiddenModal}
+            />
+          </div>
+        )
+      }
     </body>
   );
 }
