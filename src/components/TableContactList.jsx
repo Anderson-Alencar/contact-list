@@ -50,7 +50,7 @@ function TableContactList({ showModal }) {
                 </a>
               </td>
               <td className="col">
-                <a href="##" onClick={showModal} className="btn-actions">
+                <a href="##" onClick={() => showModal(id)} className="btn-actions">
                   <div>
                     <img src={RemoveIcon} alt="remove icon" className="icons" />
                   </div>

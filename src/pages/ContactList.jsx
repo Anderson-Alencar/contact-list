@@ -14,6 +14,9 @@ function ContactList() {
   const { setContacts } = useContext(ContactsContext);
   const navigate = useNavigate();
 
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [idContact, setIdContact] = useState();
+
   useEffect(() => {
     (() => {
       const user = JSON.parse(localStorage.getItem('token'));
@@ -37,10 +40,9 @@ function ContactList() {
     })();
   }, []);
 
-  const [modalIsVisible, setModalIsVisible] = useState(false);
-
-  const showModal = () => {
+  const showModal = (id) => {
     setModalIsVisible(true);
+    setIdContact(id);
   };
 
   const hiddenModal = () => {
@@ -64,6 +66,7 @@ function ContactList() {
           <div className="modal">
             <ModalRemoveContact
               hiddenModal={hiddenModal}
+              id={idContact}
             />
           </div>
         )
