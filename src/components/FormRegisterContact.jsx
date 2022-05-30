@@ -24,7 +24,7 @@ function FormRegisterContact() {
             className="input-large"
             placeholder="Digite o nome do contato"
           />
-          { errorName && <span>Nome é obrigatório</span> }
+          { errorName && <span className="error-message">* Nome é obrigatório</span> }
         </label>
         <div className="two-inputs">
           <label htmlFor="name-input" className="label-simple">
@@ -36,7 +36,7 @@ function FormRegisterContact() {
               className="input-small"
               placeholder="Digite o email"
             />
-            { errorEmail && <span>Email é obrigatório</span> }
+            { errorEmail && <span className="error-message">* Email é obrigatório</span> }
           </label>
           <label htmlFor="name-input" className="label-simple">
             Celular
@@ -47,7 +47,7 @@ function FormRegisterContact() {
               className="input-small"
               placeholder="Digite o celular"
             />
-            { errorMobile && <span>Celular é obrigatório</span>}
+            { errorMobile && <span className="error-message">* Celular é obrigatório</span>}
           </label>
         </div>
       </div>

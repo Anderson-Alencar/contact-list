@@ -124,3 +124,9 @@ body {
   border: none;
   border-radius: 8px;
 }
+
+.error-message {
+  font-style: italic;
+  color: #b01726;
+  font-size: 14px;
+}
