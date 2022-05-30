@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import ContactsContext from '../context/contacts/ContactsContext';
 import ButtonRegister from './ButtonRegister';
 
 function FormRegisterContact() {
+  const { errorName, errorEmail, errorMobile } = useContext(ContactsContext);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [mobile, setMobile] = useState();
@@ -22,6 +24,7 @@ function FormRegisterContact() {
             className="input-large"
             placeholder="Digite o nome do contato"
           />
+          { errorName && <span>Nome é obrigatório</span> }
         </label>
         <div className="two-inputs">
           <label htmlFor="name-input" className="label-simple">
@@ -33,6 +36,7 @@ function FormRegisterContact() {
               className="input-small"
               placeholder="Digite o email"
             />
+            { errorEmail && <span>Email é obrigatório</span> }
           </label>
           <label htmlFor="name-input" className="label-simple">
             Celular
@@ -43,6 +47,7 @@ function FormRegisterContact() {
               className="input-small"
               placeholder="Digite o celular"
             />
+            { errorMobile && <span>Celular é obrigatório</span>}
           </label>
         </div>
       </div>
