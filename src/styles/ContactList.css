@@ -33,8 +33,13 @@ main {
   justify-content: space-between;
   align-items: center;
   margin-left: 56px;
-  text-decoration: none;
+  background: none;
+  border: none;
   opacity: 0.64;
+}
+
+.btn-back:hover {
+  cursor: pointer;
 }
 
 .back-icon {
