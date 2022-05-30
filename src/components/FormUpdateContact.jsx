@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
-import ButtonRegister from './ButtonRegister';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import ButtonUpdate from './ButtonUpdate';
 
-function FormRegisterContact() {
+function FormUpdateContact({ id, dataContact }) {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [mobile, setMobile] = useState();
 
+  useEffect(() => {
+    if (dataContact) {
+      setName(dataContact.name);
+      setEmail(dataContact.email);
+      setMobile(dataContact.mobile);
+    }
+  }, [dataContact]);
+
   return (
     <form className="contact-form">
       <div>
-        <h1 className="title-form">Cadastre um novo contato</h1>
-        <p className="desc-form">Preencha as informações para cadastrar um novo contato</p>
+        <h1 className="title-form">Atualizar contato</h1>
+        <p className="desc-form">Faça as alterações necessárias e ao terminar salve seu contato</p>
       </div>
       <div className="group-input">
         <label htmlFor="name-input" className="label-large">
@@ -46,13 +55,23 @@ function FormRegisterContact() {
           </label>
         </div>
       </div>
-      <ButtonRegister
+      <ButtonUpdate
         name={name}
         email={email}
         mobile={mobile}
+        id={id}
       />
     </form>
   );
 }
 
-export default FormRegisterContact;
+FormUpdateContact.propTypes = {
+  id: PropTypes.string.isRequired,
+  dataContact: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    mobile: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default FormUpdateContact;

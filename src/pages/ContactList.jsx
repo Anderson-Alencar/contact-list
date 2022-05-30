@@ -1,15 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ButtonAddNewContact from '../components/ButtonAddNewContact';
+import ModalRemoveContact from '../components/ModalRemoveContact';
 import NavBarBack from '../components/NavBarBack';
 import TableContactList from '../components/TableContactList';
-import UserContext from '../context/UserContext';
-import { setToken } from '../services/requests';
+import ContactsContext from '../context/contacts/ContactsContext';
+import UserContext from '../context/user/UserContext';
+import { requestGet, setToken } from '../services/requests';
 import '../styles/ContactList.css';
 
 function ContactList() {
   const { setIsAuthenticated } = useContext(UserContext);
+  const { setContacts } = useContext(ContactsContext);
   const navigate = useNavigate();
+
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [idContact, setIdContact] = useState();
 
   useEffect(() => {
     (() => {
@@ -23,7 +29,25 @@ function ContactList() {
       setIsAuthenticated(true);
       return true;
     })();
-  }, [navigate]);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const endpoint = '/contacts';
+
+      const { data } = await requestGet(endpoint);
+      setContacts(data);
+    })();
+  }, []);
+
+  const showModal = (id) => {
+    setModalIsVisible(true);
+    setIdContact(id);
+  };
+
+  const hiddenModal = () => {
+    setModalIsVisible(false);
+  };
 
   return (
     <body>
@@ -33,8 +57,20 @@ function ContactList() {
           <h1 className="title-list">Listagem de contatos</h1>
           <ButtonAddNewContact />
         </div>
-        <TableContactList />
+        <TableContactList
+          showModal={showModal}
+        />
       </main>
+      {
+        modalIsVisible && (
+          <div className="modal">
+            <ModalRemoveContact
+              hiddenModal={hiddenModal}
+              id={idContact}
+            />
+          </div>
+        )
+      }
     </body>
   );
 }

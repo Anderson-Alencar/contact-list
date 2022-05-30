@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormRegisterContact from '../components/FormRegisterContact';
 import NavBarBack from '../components/NavBarBack';
-import '../styles/NewContactRegistration.css';
+import '../styles/InsertContact.css';
 import { setToken } from '../services/requests';
-import UserContext from '../context/UserContext';
+import UserContext from '../context/user/UserContext';
 
-function NewContactRegistration() {
+function InsertContact() {
   const { setIsAuthenticated } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -33,4 +33,4 @@ function NewContactRegistration() {
   );
 }
 
-export default NewContactRegistration;
+export default InsertContact;

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import ChevronDown from '../assets/chevron-down.png';
 import EditIcon from '../assets/edit.svg';
 import RemoveIcon from '../assets/trash.svg';
+import ContactsContext from '../context/contacts/ContactsContext';
 
-function TableContactList() {
+function TableContactList({ showModal }) {
+  const { contacts } = useContext(ContactsContext);
+
   return (
     <table className="table-contact-list">
       <thead>
@@ -28,76 +32,41 @@ function TableContactList() {
         </tr>
       </thead>
       <tbody>
-
-        <tr className="row-body">
-          <td className="col-01">01</td>
-          <td className="col">Enzo Gabriel Silva Matos</td>
-          <td className="col">(16) 99359-4863</td>
-          <td className="col">enzogabriel@email.com</td>
-          <td className="col">
-            <a href="##" className="btn-actions">
-              <div>
-                <img src={EditIcon} alt="edit icon" className="icons" />
-              </div>
-              <text>Editar</text>
-            </a>
-          </td>
-          <td className="col">
-            <a href="##" className="btn-actions">
-              <div>
-                <img src={RemoveIcon} alt="remove icon" className="icons" />
-              </div>
-              <text>Excluir</text>
-            </a>
-          </td>
-        </tr>
-        <tr className="row-body">
-          <td className="col-01">01</td>
-          <td className="col">Enzo Gabriel Silva Matos</td>
-          <td className="col">(16) 99359-4863</td>
-          <td className="col">enzogabriel@email.com</td>
-          <td className="col">
-            <a href="##" className="btn-actions">
-              <div>
-                <img src={EditIcon} alt="edit icon" className="icons" />
-              </div>
-              <text>Editar</text>
-            </a>
-          </td>
-          <td className="col">
-            <a href="##" className="btn-actions">
-              <div>
-                <img src={RemoveIcon} alt="remove icon" className="icons" />
-              </div>
-              <text>Excluir</text>
-            </a>
-          </td>
-        </tr>
-        <tr className="row-body">
-          <td className="col-01">01</td>
-          <td className="col">Enzo Gabriel Silva Matos</td>
-          <td className="col">(16) 99359-4863</td>
-          <td className="col">enzogabriel@email.com</td>
-          <td className="col">
-            <a href="##" className="btn-actions">
-              <div>
-                <img src={EditIcon} alt="edit icon" className="icons" />
-              </div>
-              <text>Editar</text>
-            </a>
-          </td>
-          <td className="col">
-            <a href="##" className="btn-actions">
-              <div>
-                <img src={RemoveIcon} alt="remove icon" className="icons" />
-              </div>
-              <text>Excluir</text>
-            </a>
-          </td>
-        </tr>
+        {
+          contacts.map(({
+            id, name, mobile, email,
+          }, index) => (
+            <tr className="row-body" key={id}>
+              <td className="col-01">{ `0${index + 1}` }</td>
+              <td className="col">{ name }</td>
+              <td className="col">{ mobile }</td>
+              <td className="col">{ email }</td>
+              <td className="col">
+                <a href={`contacts/update/${id}`} className="btn-actions">
+                  <div>
+                    <img src={EditIcon} alt="edit icon" className="icons" />
+                  </div>
+                  Editar
+                </a>
+              </td>
+              <td className="col">
+                <a href="##" onClick={() => showModal(id)} className="btn-actions">
+                  <div>
+                    <img src={RemoveIcon} alt="remove icon" className="icons" />
+                  </div>
+                  Excluir
+                </a>
+              </td>
+            </tr>
+          ))
+        }
       </tbody>
     </table>
   );
 }
+
+TableContactList.propTypes = {
+  showModal: PropTypes.func.isRequired,
+};
 
 export default TableContactList;
