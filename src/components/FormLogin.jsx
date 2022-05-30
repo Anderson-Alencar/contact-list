@@ -4,7 +4,7 @@ import ButtonLogin from './ButtonLogin';
 
 function FormLogin() {
   const {
-    email, password, setEmail, setPassword,
+    email, password, setEmail, setPassword, authenticationError,
   } = useContext(UserContext);
 
   return (
@@ -37,6 +37,15 @@ function FormLogin() {
         </label>
       </div>
       <ButtonLogin />
+      {
+        authenticationError && (
+          <div className="invalid-auth">
+            <span>
+              Autenticação inválida. Email e/ou senha incorretos
+            </span>
+          </div>
+        )
+      }
     </form>
   );
 }
