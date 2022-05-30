@@ -179,3 +179,20 @@ table, th, td {
   text-decoration: none;
   color: #495057;
 }
+
+.btn-name {
+  background: none;
+  border: none;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 148%;
+  letter-spacing: -0.02em;
+  color: #495057;
+}
+
+.btn-name:hover {
+  cursor: pointer;
+  text-decoration:underline;
+}

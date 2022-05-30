@@ -5,7 +5,7 @@ import EditIcon from '../assets/edit.svg';
 import RemoveIcon from '../assets/trash.svg';
 import ContactsContext from '../context/contacts/ContactsContext';
 
-function TableContactList({ showModal }) {
+function TableContactList({ showAlertRemove, showContact }) {
   const { contacts } = useContext(ContactsContext);
 
   return (
@@ -38,7 +38,11 @@ function TableContactList({ showModal }) {
           }, index) => (
             <tr className="row-body" key={id}>
               <td className="col-01">{ `0${index + 1}` }</td>
-              <td className="col">{ name }</td>
+              <td className="col">
+                <button type="button" className="btn-name" onClick={() => showContact(id)}>
+                  { name }
+                </button>
+              </td>
               <td className="col">{ mobile }</td>
               <td className="col">{ email }</td>
               <td className="col">
@@ -50,7 +54,7 @@ function TableContactList({ showModal }) {
                 </a>
               </td>
               <td className="col">
-                <a href="##" onClick={() => showModal(id)} className="btn-actions">
+                <a href="##" onClick={() => showAlertRemove(id)} className="btn-actions">
                   <div>
                     <img src={RemoveIcon} alt="remove icon" className="icons" />
                   </div>
@@ -66,7 +70,8 @@ function TableContactList({ showModal }) {
 }
 
 TableContactList.propTypes = {
-  showModal: PropTypes.func.isRequired,
+  showAlertRemove: PropTypes.func.isRequired,
+  showContact: PropTypes.func.isRequired,
 };
 
 export default TableContactList;

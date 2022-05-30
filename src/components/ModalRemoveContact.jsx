@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import '../styles/Modal.css';
 import { requestDelete } from '../services/requests';
 
-function ModalRemoveContact({ hiddenModal, id }) {
+function ModalRemoveContact({ hiddenAlertRemove, id }) {
   const removeContact = async () => {
     const endpoint = (`/contacts/${id}`);
     await requestDelete(endpoint);
-    hiddenModal();
+    hiddenAlertRemove();
     window.location.reload(false);
   };
 
@@ -17,7 +17,7 @@ function ModalRemoveContact({ hiddenModal, id }) {
         <button
           type="button"
           className="close"
-          onClick={hiddenModal}
+          onClick={hiddenAlertRemove}
         >
           &times;
         </button>
@@ -35,7 +35,7 @@ function ModalRemoveContact({ hiddenModal, id }) {
           <button
             type="button"
             className="btn-no-remove"
-            onClick={hiddenModal}
+            onClick={hiddenAlertRemove}
           >
             Não excluir
           </button>
@@ -46,7 +46,7 @@ function ModalRemoveContact({ hiddenModal, id }) {
 }
 
 ModalRemoveContact.propTypes = {
-  hiddenModal: PropTypes.func.isRequired,
+  hiddenAlertRemove: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
 };
 
