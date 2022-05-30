@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ButtonAddNewContact from '../components/ButtonAddNewContact';
 import ModalRemoveContact from '../components/ModalRemoveContact';
+import ModalViewContact from '../components/ModalViewContact';
 import NavBarBack from '../components/NavBarBack';
 import TableContactList from '../components/TableContactList';
 import ContactsContext from '../context/contacts/ContactsContext';
@@ -14,8 +15,10 @@ function ContactList() {
   const { setContacts } = useContext(ContactsContext);
   const navigate = useNavigate();
 
-  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [alertRemove, setAlertRemove] = useState(false);
+  const [viewContact, setViewContact] = useState(false);
   const [idContact, setIdContact] = useState();
+  const [dataContact, setDataContact] = useState();
 
   useEffect(() => {
     (() => {
@@ -40,13 +43,25 @@ function ContactList() {
     })();
   }, []);
 
-  const showModal = (id) => {
-    setModalIsVisible(true);
+  const showAlertRemove = (id) => {
+    setAlertRemove(true);
     setIdContact(id);
   };
 
-  const hiddenModal = () => {
-    setModalIsVisible(false);
+  const hiddenAlertRemove = () => {
+    setAlertRemove(false);
+  };
+
+  const showContact = async (id) => {
+    const endpoint = (`/contacts/${id}`);
+    const { data } = await requestGet(endpoint);
+
+    setDataContact(data);
+    setViewContact(true);
+  };
+
+  const hiddenContact = () => {
+    setViewContact(false);
   };
 
   return (
@@ -58,15 +73,26 @@ function ContactList() {
           <ButtonAddNewContact />
         </div>
         <TableContactList
-          showModal={showModal}
+          showAlertRemove={showAlertRemove}
+          showContact={showContact}
         />
       </main>
       {
-        modalIsVisible && (
+        alertRemove && (
           <div className="modal">
             <ModalRemoveContact
-              hiddenModal={hiddenModal}
+              hiddenAlertRemove={hiddenAlertRemove}
               id={idContact}
+            />
+          </div>
+        )
+      }
+      {
+        viewContact && (
+          <div className="modal">
+            <ModalViewContact
+              hiddenContact={hiddenContact}
+              dataContact={dataContact}
             />
           </div>
         )
