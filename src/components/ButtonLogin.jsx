@@ -4,7 +4,9 @@ import UserContext from '../context/UserContext';
 import { requestLogin } from '../services/requests';
 
 function ButtonLogin() {
-  const { email, password, setIsAuthenticated } = useContext(UserContext);
+  const {
+    email, password, setIsAuthenticated, setAuthenticationError,
+  } = useContext(UserContext);
   const navigate = useNavigate();
 
   const login = async () => {
@@ -17,6 +19,7 @@ function ButtonLogin() {
       navigate('/contacts');
     } catch (error) {
       setIsAuthenticated(false);
+      setAuthenticationError(true);
     }
   };
 
