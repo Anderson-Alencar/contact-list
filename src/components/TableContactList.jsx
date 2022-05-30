@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import ChevronDown from '../assets/chevron-down.png';
 import EditIcon from '../assets/edit.svg';
 import RemoveIcon from '../assets/trash.svg';
 import ContactsContext from '../context/contacts/ContactsContext';
 
-function TableContactList() {
+function TableContactList({ showModal }) {
   const { contacts } = useContext(ContactsContext);
 
   return (
@@ -49,7 +50,7 @@ function TableContactList() {
                 </a>
               </td>
               <td className="col">
-                <a href="##" className="btn-actions">
+                <a href="##" onClick={() => showModal(id)} className="btn-actions">
                   <div>
                     <img src={RemoveIcon} alt="remove icon" className="icons" />
                   </div>
@@ -63,5 +64,9 @@ function TableContactList() {
     </table>
   );
 }
+
+TableContactList.propTypes = {
+  showModal: PropTypes.func.isRequired,
+};
 
 export default TableContactList;
